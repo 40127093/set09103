@@ -1,7 +1,11 @@
-from flask import Flask, request
+from flask import Flask, request, url_for
 app = Flask(__name__)
 
-@app.route("/account/", methods=['POST', 'GET'])
+@app.route("/display/")
+def display():
+  return '<img src="'+ url_for('static', filename='uploads/file.png')+':/>
+
+@app.route("/upload/", methods = ['POST', 'GET'])
 def account():
   if request.method == 'POST':
     f = request.files['datafile']
@@ -15,8 +19,8 @@ def account():
       <input type="file" name="datafile"/>
       <input type="submit" name="submit" id="submit"/>
     </form>
-    </bosy>
-    <html/>
+    </body>
+    </html>
     '''
     return page, 200
 
